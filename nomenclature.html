@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Номенклатура медицинских услуг</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="loading-indicator" id="loadingIndicator"></div>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/medical-logo.svg" alt="Логотип">
+                        <span>Справочник медицинских услуг</span>
+                    </a>
+                </div>
+                <ul>
+                    <li><a href="nomenclature.html" class="active">Номенклатура</a></li>
+                    <li><a href="eru.html">Единый реестр услуг</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1>Номенклатура медицинских услуг</h1>
+                <p>Полный справочник медицинских услуг с удобной навигацией и поиском</p>
+            </div>
+            <div class="hero-image">
+                <img src="images/medical-hero.svg" alt="Медицинские услуги">
+            </div>
+        </div>
+        <div class="structure-dropdown">
+            <button class="structure-btn">
+                <span>Структура номенклатуры</span>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="structure-content">
+                <div class="structure-search">
+                    <input type="text" id="structureSearch" placeholder="Поиск по структуре...">
+                </div>
+                <div class="structure-tree" id="nomenclatureStructureTree"></div>
+            </div>
+        </div>
+        <div class="filters-container">
+            <div class="filter-group">
+                <label>Раздел:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="razdel" value="А" checked> А</label>
+                    <label><input type="checkbox" name="razdel" value="B" checked> B</label>
+                </div>
+            </div>
+            <div class="filter-group">
+                <label>Тип услуги:</label>
+                <input type="text" class="column-filter" data-column="type" placeholder="Фильтр...">
+            </div>
+            <div class="filter-group">
+                <label>Класс услуги:</label>
+                <input type="text" class="column-filter" data-column="class" placeholder="Фильтр...">
+            </div>
+            <div class="filter-group">
+                <label>Код:</label>
+                <input type="text" class="column-filter" data-column="code" placeholder="Фильтр...">
+            </div>
+            <div class="filter-group">
+                <label>Наименование:</label>
+                <input type="text" class="column-filter" data-column="name" placeholder="Фильтр...">
+            </div>
+            <button id="resetAllFilters" class="reset-filters">Сбросить</button>
+        </div>
+        <div class="table-container">
+            <table id="nomenclatureTable">
+                <thead>
+                    <tr>
+                        <th>Раздел</th>
+                        <th>Тип услуги</th>
+                        <th>Класс услуги</th>
+                        <th>Код</th>
+                        <th>Наименование</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Данные будут добавлены динамически -->
+                </tbody>
+            </table>
+            <div id="pagination"></div>
+            <div id="loading">Загружено <span id="loadedCount">0</span> записей</div>
+        </div>
+    </main>
+
+    <!-- Добавим модальное окно для структуры -->
+    <div id="structureModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Структура номенклатуры</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Удаляем дублирующий элемент -->
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
