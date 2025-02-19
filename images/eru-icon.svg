@@ -1,0 +1,39 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Фон -->
+    <rect x="10" y="10" width="60" height="60" rx="8" fill="#4299e1"/>
+    
+    <!-- Эффект свечения -->
+    <rect x="10" y="10" width="60" height="60" rx="8" fill="url(#eruGlow)"/>
+    
+    <!-- Основная структура -->
+    <g filter="url(#eruShadow)">
+        <!-- Центральный круг -->
+        <circle cx="40" cy="40" r="20" fill="white"/>
+        
+        <!-- Соединительные линии -->
+        <path d="M40 20v40M20 40h40" stroke="#4299e1" stroke-width="2"/>
+        
+        <!-- Маленькие круги -->
+        <circle cx="40" cy="25" r="5" fill="#ebf8ff" stroke="#4299e1" stroke-width="2"/>
+        <circle cx="40" cy="55" r="5" fill="#ebf8ff" stroke="#4299e1" stroke-width="2"/>
+        <circle cx="25" cy="40" r="5" fill="#ebf8ff" stroke="#4299e1" stroke-width="2"/>
+        <circle cx="55" cy="40" r="5" fill="#ebf8ff" stroke="#4299e1" stroke-width="2"/>
+        
+        <!-- Текст в кругах -->
+        <text x="38" y="27" font-family="monospace" font-size="6" fill="#2b6cb0">01</text>
+        <text x="38" y="57" font-family="monospace" font-size="6" fill="#2b6cb0">02</text>
+        <text x="23" y="42" font-family="monospace" font-size="6" fill="#2b6cb0">03</text>
+        <text x="53" y="42" font-family="monospace" font-size="6" fill="#2b6cb0">04</text>
+    </g>
+    
+    <!-- Градиенты и фильтры -->
+    <defs>
+        <linearGradient id="eruGlow" x1="40" y1="10" x2="40" y2="70">
+            <stop offset="0%" stop-color="#63b3ed"/>
+            <stop offset="100%" stop-color="#4299e1"/>
+        </linearGradient>
+        <filter id="eruShadow" x="0" y="0" width="100%" height="100%" filterUnits="userSpaceOnUse">
+            <feDropShadow dx="2" dy="2" stdDeviation="2" flood-opacity="0.2"/>
+        </filter>
+    </defs>
+</svg> 
