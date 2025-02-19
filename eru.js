@@ -525,15 +525,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         structureBtn.addEventListener('click', function(e) {
             e.stopPropagation();
-            const isHidden = structureContent.style.display === 'none' || !structureContent.style.display;
-            structureContent.style.display = isHidden ? 'block' : 'none';
-            arrow.textContent = isHidden ? '▲' : '▼';
+            structureContent.classList.toggle('visible');
+            arrow.textContent = structureContent.classList.contains('visible') ? '▲' : '▼';
         });
 
         // Закрытие структуры при клике вне её области
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.structure-container')) {
-                structureContent.style.display = 'none';
+                structureContent.classList.remove('visible');
                 arrow.textContent = '▼';
             }
         });
@@ -563,17 +562,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 applyFilters();
                 
                 // Закрываем структуру после выбора
-                structureContent.style.display = 'none';
+                structureContent.classList.remove('visible');
                 arrow.textContent = '▼';
             }
 
             // Обработка раскрытия/скрытия
             const expandButton = e.target.closest('.expand-button');
             if (expandButton) {
-                const content = expandButton.closest('.tree-toggle').nextElementSibling;
-                const isHidden = content.classList.contains('collapsed');
+                const treeToggle = expandButton.closest('.tree-toggle');
+                const content = treeToggle.nextElementSibling;
+                const isCollapsed = content.classList.contains('collapsed');
+                
                 content.classList.toggle('collapsed');
-                expandButton.textContent = isHidden ? '▼' : '▶';
+                treeToggle.classList.toggle('expanded');
+                expandButton.textContent = isCollapsed ? '▼' : '▶';
+                
                 e.stopPropagation();
             }
         });
@@ -591,7 +594,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     while (parent) {
                         parent.style.display = '';
                         parent.querySelector('.tree-content').classList.remove('collapsed');
-                        parent.querySelector('.expand-button').textContent = '▼';
+                        parent.querySelector('.tree-toggle').classList.add('expanded');
                         parent = parent.parentElement.closest('.tree-item');
                     }
                 }
